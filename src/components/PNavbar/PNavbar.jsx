@@ -56,7 +56,7 @@ return(
             <Nav.Link href={`${env.BASE_URL}/download`} className={'download' === this.props.active ? active : className}>
               Download
             </Nav.Link>
-            <Nav.Link href="/contact" className={'contact' === this.props.active ? active : className}>
+            <Nav.Link href={`${env.BASE_URL}/contact`} className={'contact' === this.props.active ? active : className}>
               Contact
             </Nav.Link>
           </Nav>
