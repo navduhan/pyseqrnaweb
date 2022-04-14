@@ -7,6 +7,7 @@ export class Tutorial extends React.Component{
     render(){
         return(
             <div className="container justify-content-left">
+                <h5>This page has technical glitches. We will fix as soon as possible</h5>
                 <JupyterViewer rawIpynb={nb_test}/>
             </div>
         )
