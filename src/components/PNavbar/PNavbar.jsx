@@ -47,17 +47,17 @@ return(
         
 
           <Nav className="">
-            <Nav.Link href= {`${env.BASE_URL}/home`} className={'home' === this.props.active ? active : className}>
+            <Nav.Link href= {`${env.BASE_URL}/`} className={'home' === this.props.active ? active : className}>
               Home
             </Nav.Link>
             <Nav.Link href= {`${env.BASE_URL}/tutorial`} className={'tutorial' === this.props.active ? active : className}>
-              Species
+              Tutorial
             </Nav.Link>
-            <Nav.Link href="/download" className={'download' === this.props.active ? active : className}>
-              Tools
+            <Nav.Link href={`${env.BASE_URL}/download`} className={'download' === this.props.active ? active : className}>
+              Download
             </Nav.Link>
             <Nav.Link href="/contact" className={'contact' === this.props.active ? active : className}>
-              Help
+              Contact
             </Nav.Link>
           </Nav>
 

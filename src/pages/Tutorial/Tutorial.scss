@@ -1,0 +1,32 @@
+@import '../../scss/colors.scss';
+@import '../../scss/globals';
+
+
+.info {
+    font-size: 1.2rem;
+    text-align: justify;
+}
+
+
+
+.coded{
+    display: block;
+    align-items: flex-start;
+    text-align: left;
+    background-color:#f0f8ff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 10px;
+}
+
+.output{
+    display: block;
+    align-items: flex-start;
+    text-align: left;
+    background-color:#ebfafa;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    padding-left: 10px;
+}

@@ -3,7 +3,8 @@ import Container from 'react-bootstrap/Container';
 import { env } from './env.js';
 import { PNavbar } from './components/PNavbar/PNavbar';
 import { Home } from './pages/Home/Home';
-
+import { Download } from './pages/Download/Download.jsx';
+import {Tutorial}  from './pages/Tutorial/Tutorial.jsx';
 
 import {
     BrowserRouter as Router,
@@ -24,19 +25,18 @@ export class PyseqRNA extends Component {
                  <Container fluid className='App px-4'>
                  <PNavbar active={document.location.pathname.split('/')[this.state.baseUrlLen]}/>
                 <Routes>
+                <Route path={`${env.BASE_URL}/`} element={<Home />}>
+                    
+                    </Route>
                     <Route path={`${env.BASE_URL}/home`} element={<Home />}>
                     
+                
                     </Route>
-                    {/* <Route path={`${env.BASE_URL}/tutorial`} element={<Tut />}>
+                    <Route path={`${env.BASE_URL}/download`} element={<Download />}>
+                    </Route>
+                    <Route path={`${env.BASE_URL}/tutorial`} element={<Tutorial />}>
+                    </Route>
                     
-                    </Route>
-                    <Route path={`${env.BASE_URL}/sequences`} element={<Sequences />}>
-                    
-                    </Route>
-                    <Route path={`${env.BASE_URL}/primers`} element={<Primers />}>
-                    
-                    </Route>
-                    <Route path={`${env.BASE_URL}/species/:id`} element={<Species />}></Route> */}
                 </Routes>
                  </Container>
                
