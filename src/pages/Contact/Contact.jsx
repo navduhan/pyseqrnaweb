@@ -1,6 +1,6 @@
 import React from "react";
-import {Container, Row, Col} from 'react-bootstrap';
-import {Email_Form}  from "../../components/Email/Email.jsx";
+// import {Container, Row, Col} from 'react-bootstrap';
+// import {Email_Form}  from "../../components/Email/Email.jsx";
 
 export class Contact extends React.Component {
 

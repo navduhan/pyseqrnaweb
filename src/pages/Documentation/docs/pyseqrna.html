@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; pySeqRNA 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="Modules" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pySeqRNA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quality-submodules">Quality Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.quality_check">pyseqrna.quality_check module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.quality_check.fastqcRun"><code class="docutils literal notranslate"><span class="pre">fastqcRun()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.quality_trimming">pyseqrna.quality_trimming module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.quality_trimming.flexbarRun"><code class="docutils literal notranslate"><span class="pre">flexbarRun()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.quality_trimming.trim_galoreRun"><code class="docutils literal notranslate"><span class="pre">trim_galoreRun()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.quality_trimming.trimmomaticRun"><code class="docutils literal notranslate"><span class="pre">trimmomaticRun()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.ribosomal">pyseqrna.ribosomal module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.ribosomal.sortmernaRun"><code class="docutils literal notranslate"><span class="pre">sortmernaRun()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#alignment-submodules">Alignment Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.aligners">pyseqrna.aligners module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.aligners.STAR_Aligner"><code class="docutils literal notranslate"><span class="pre">STAR_Aligner</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.aligners.hisat2_Aligner"><code class="docutils literal notranslate"><span class="pre">hisat2_Aligner</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.pyseqrna_stats">pyseqrna.pyseqrna_stats module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_stats.align_stats"><code class="docutils literal notranslate"><span class="pre">align_stats()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#quantification-submodules">Quantification Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.quantification">pyseqrna.quantification module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.quantification.featureCount"><code class="docutils literal notranslate"><span class="pre">featureCount()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.quantification.htseqCount"><code class="docutils literal notranslate"><span class="pre">htseqCount()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.multimapped_groups">pyseqrna.multimapped_groups module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.multimapped_groups.countMMG"><code class="docutils literal notranslate"><span class="pre">countMMG()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.normalize_counts">pyseqrna.normalize_counts module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.normalize_counts.Normalization"><code class="docutils literal notranslate"><span class="pre">Normalization</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.normalize_counts.boxplot"><code class="docutils literal notranslate"><span class="pre">boxplot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.clustering">pyseqrna.clustering module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.clustering.clusterSample"><code class="docutils literal notranslate"><span class="pre">clusterSample()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.clustering.leaf_label"><code class="docutils literal notranslate"><span class="pre">leaf_label()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#differential-genes-submodules">Differential Genes Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.differential_expression">pyseqrna.differential_expression module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.differential_expression.Gene_Description"><code class="docutils literal notranslate"><span class="pre">Gene_Description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.differential_expression.degFilter"><code class="docutils literal notranslate"><span class="pre">degFilter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.differential_expression.runDESeq2"><code class="docutils literal notranslate"><span class="pre">runDESeq2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.differential_expression.run_edgeR"><code class="docutils literal notranslate"><span class="pre">run_edgeR()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functional-annotation-submodules">Functional Annotation Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.gene_ontology">pyseqrna.gene_ontology module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.gene_ontology.GeneOntology"><code class="docutils literal notranslate"><span class="pre">GeneOntology</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.pathway">pyseqrna.pathway module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pathway.Pathway"><code class="docutils literal notranslate"><span class="pre">Pathway</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utility-submodules">Utility Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.arg_parser">pyseqrna.arg_parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.pyseqrna_utils">pyseqrna.pyseqrna_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.PyseqrnaLogger"><code class="docutils literal notranslate"><span class="pre">PyseqrnaLogger()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.change_attribute"><code class="docutils literal notranslate"><span class="pre">change_attribute()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.change_ids"><code class="docutils literal notranslate"><span class="pre">change_ids()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.check_files"><code class="docutils literal notranslate"><span class="pre">check_files()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.check_path"><code class="docutils literal notranslate"><span class="pre">check_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.check_status"><code class="docutils literal notranslate"><span class="pre">check_status()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.clusterRun"><code class="docutils literal notranslate"><span class="pre">clusterRun()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.findFiles"><code class="docutils literal notranslate"><span class="pre">findFiles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.getFiles"><code class="docutils literal notranslate"><span class="pre">getFiles()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.getGenes"><code class="docutils literal notranslate"><span class="pre">getGenes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.get_basename"><code class="docutils literal notranslate"><span class="pre">get_basename()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.get_cpu"><code class="docutils literal notranslate"><span class="pre">get_cpu()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.get_directory"><code class="docutils literal notranslate"><span class="pre">get_directory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.get_file_extension"><code class="docutils literal notranslate"><span class="pre">get_file_extension()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.get_parent"><code class="docutils literal notranslate"><span class="pre">get_parent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.make_directory"><code class="docutils literal notranslate"><span class="pre">make_directory()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.parse_config_file"><code class="docutils literal notranslate"><span class="pre">parse_config_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.parse_gff"><code class="docutils literal notranslate"><span class="pre">parse_gff()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.read_input_file"><code class="docutils literal notranslate"><span class="pre">read_input_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_utils.replace_cpu"><code class="docutils literal notranslate"><span class="pre">replace_cpu()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.version">pyseqrna.version module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pyseqrna.pyseqrna_plots">pyseqrna.pyseqrna_plots module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_plots.plotHeatmap"><code class="docutils literal notranslate"><span class="pre">plotHeatmap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_plots.plotMA"><code class="docutils literal notranslate"><span class="pre">plotMA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_plots.plotVenn"><code class="docutils literal notranslate"><span class="pre">plotVenn()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyseqrna.pyseqrna_plots.plotVolcano"><code class="docutils literal notranslate"><span class="pre">plotVolcano()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pySeqRNA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">Modules</a> &raquo;</li>
+      <li>Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pyseqrna.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyseqrna">
+<span id="introduction"></span><h1>Introduction<a class="headerlink" href="#module-pyseqrna" title="Permalink to this heading"></a></h1>
+<p>&#64;author: naveen duhan</p>
+<p>Read pyseqrna configuration</p>
+</section>
+<section id="quality-submodules">
+<h1>Quality Submodules<a class="headerlink" href="#quality-submodules" title="Permalink to this heading"></a></h1>
+<section id="module-pyseqrna.quality_check">
+<span id="pyseqrna-quality-check-module"></span><h2>pyseqrna.quality_check module<a class="headerlink" href="#module-pyseqrna.quality_check" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This modules contains read quality check function</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>May 19, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.quality_check.fastqcRun">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.quality_check.</span></span><span class="sig-name descname"><span class="pre">fastqcRun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampleDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairedEND</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">afterTrim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.quality_check.fastqcRun" title="Permalink to this definition"></a></dt>
+<dd><p>This function perform fastqc quality using FastQC (<a class="reference external" href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">http://www.bioinformatics.babraham.ac.uk/projects/fastqc/</a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sampleDict</strong> – Samples dictionary generated by <em>pyseqrna_utils.read_input_file</em> function.</p></li>
+<li><p><strong>configFile</strong> – Parameters file for FastQC tool. Default from pyseqrna params</p></li>
+<li><p><strong>slurm</strong> – True to enable slurm job scheduling on HPC</p></li>
+<li><p><strong>mem</strong> – Memory if slurm True</p></li>
+<li><p><strong>cpu</strong> – Number of threads to use if slurm True.</p></li>
+<li><p><strong>task</strong> – Number of tasks per cpu if slurm True.</p></li>
+<li><p><strong>pairedEND</strong> – True if samples are paired</p></li>
+<li><p><strong>afterTrim</strong> – True if checking quality after trimming.</p></li>
+<li><p><strong>outDir</strong> – Output directory for results. Default is current working directory.</p></li>
+<li><p><strong>dep</strong> – Slurm job dependency.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyseqrna.quality_trimming">
+<span id="pyseqrna-quality-trimming-module"></span><h2>pyseqrna.quality_trimming module<a class="headerlink" href="#module-pyseqrna.quality_trimming" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This modules contains read quality check functions for pySeqRNA</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>May 20, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.quality_trimming.flexbarRun">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.quality_trimming.</span></span><span class="sig-name descname"><span class="pre">flexbarRun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampleDict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paired</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.quality_trimming.flexbarRun" title="Permalink to this definition"></a></dt>
+<dd><p>This function is to perform adapter and quality based trimming of reads using flexbar trimming tool (<a class="reference external" href="https://github.com/seqan/flexbar">https://github.com/seqan/flexbar</a>)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samplesDict</strong> – A dictionary containing sample information generated by <em>pyseqrna_utils.read_input_file</em> function.</p></li>
+<li><p><strong>configFile</strong> – A config file for flexbar parameters. Default is flexbar.ini from param.</p></li>
+<li><p><strong>slurm</strong> – True if using slurm to schedule jobs.</p></li>
+<li><p><strong>mem</strong> – Provide memory in GB to use. Default 20 GB.</p></li>
+<li><p><strong>tasks</strong> – Number of cpu-tasks to run. Defaults to 1.</p></li>
+<li><p><strong>cpu</strong> – Total number of threads to use. Default 8.</p></li>
+<li><p><strong>pairedEND</strong> – True if samples are paired.</p></li>
+<li><p><strong>outDir</strong> – Output directory for results. Default is current working directory.</p></li>
+<li><p><strong>dep</strong> – slurm job id on which this job depends.  Defaults to ‘’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.quality_trimming.trim_galoreRun">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.quality_trimming.</span></span><span class="sig-name descname"><span class="pre">trim_galoreRun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampleDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paired</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.quality_trimming.trim_galoreRun" title="Permalink to this definition"></a></dt>
+<dd><p>This function is to perform adapter and quality based trimming of reads using trmmomatic trimming tool</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samplesDict</strong> – A dictionary containing sample information generated by <em>pyseqrna_utils.read_input_file</em> function.</p></li>
+<li><p><strong>configFile</strong> – A config file for flexbar parameters. Default is flexbar.ini from param.</p></li>
+<li><p><strong>slurm</strong> – True if using slurm to schedule jobs.</p></li>
+<li><p><strong>mem</strong> – Provide memory in GB to use. Default 20 GB.</p></li>
+<li><p><strong>tasks</strong> – Number of cpu-tasks to run. Defaults to 1.</p></li>
+<li><p><strong>cpu</strong> – Total number of threads to use. Default 8.</p></li>
+<li><p><strong>pairedEND</strong> – True if samples are paired.</p></li>
+<li><p><strong>outDir</strong> – Output directory for results. Default is current working directory.</p></li>
+<li><p><strong>dep</strong> – slurm job id on which this job depends.  Defaults to ‘’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.quality_trimming.trimmomaticRun">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.quality_trimming.</span></span><span class="sig-name descname"><span class="pre">trimmomaticRun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampleDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paired</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.quality_trimming.trimmomaticRun" title="Permalink to this definition"></a></dt>
+<dd><p>This function is to perform adapter and quality based trimming of reads using trmmomatic trimming tool</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samplesDict</strong> – A dictionary containing sample information generated by <em>pyseqrna_utils.read_input_file</em> function.</p></li>
+<li><p><strong>configFile</strong> – A config file for flexbar parameters. Default is flexbar.ini from param.</p></li>
+<li><p><strong>slurm</strong> – True if using slurm to schedule jobs.</p></li>
+<li><p><strong>mem</strong> – Provide memory in GB to use. Default 20 GB.</p></li>
+<li><p><strong>tasks</strong> – Number of cpu-tasks to run. Defaults to 1.</p></li>
+<li><p><strong>cpu</strong> – Total number of threads to use. Default 8.</p></li>
+<li><p><strong>pairedEND</strong> – True if samples are paired.</p></li>
+<li><p><strong>outDir</strong> – Output directory for results. Default is current working directory.</p></li>
+<li><p><strong>dep</strong> – slurm job id on which this job depends.  Defaults to ‘’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyseqrna.ribosomal">
+<span id="pyseqrna-ribosomal-module"></span><h2>pyseqrna.ribosomal module<a class="headerlink" href="#module-pyseqrna.ribosomal" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This script contains sortMeRNA function for removing ribosomal RNA from reads.</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>July 31, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.ribosomal.sortmernaRun">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.ribosomal.</span></span><span class="sig-name descname"><span class="pre">sortmernaRun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampleDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rnaDatabases</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairedEND</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.ribosomal.sortmernaRun" title="Permalink to this definition"></a></dt>
+<dd><p>This function execute sortMeRNA to remove ribosomal RNA from fastq reads.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sampleDict</strong> – Sample dictionary containing sample information</p></li>
+<li><p><strong>outDir</strong> – Output directory. Defaults to present working directory.</p></li>
+<li><p><strong>pairedEND</strong> – True if samples are paired-end. Defaults to False</p></li>
+<li><p><strong>slurm</strong> – True if SLURM scheduling is available. Defaults to False</p></li>
+<li><p><strong>mem</strong> – Memory in GB. Defaults to 10</p></li>
+<li><p><strong>cpu</strong> – Total number of CPU to use per task. Defaults to 8</p></li>
+<li><p><strong>task</strong> – Number of tasks per job. Defaults to 1</p></li>
+<li><p><strong>dep</strong> – Slurm job id if depends on other job. Defaults to ‘’</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="alignment-submodules">
+<h1>Alignment Submodules<a class="headerlink" href="#alignment-submodules" title="Permalink to this heading"></a></h1>
+<section id="module-pyseqrna.aligners">
+<span id="pyseqrna-aligners-module"></span><h2>pyseqrna.aligners module<a class="headerlink" href="#module-pyseqrna.aligners" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This modules contains read align class functions for pySeqRNA</p>
+</dd>
+</dl>
+<p>:Created : July 21, 2021</p>
+<p>:Author : Naveen Duhan</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyseqrna.aligners.STAR_Aligner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyseqrna.aligners.</span></span><span class="sig-name descname"><span class="pre">STAR_Aligner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genome</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.aligners.STAR_Aligner" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for STAR alignment program</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configFile</strong> – Path to STAR config file. This file will used to get the parameters for STAR alignment program</p></li>
+<li><p><strong>slurm</strong> – To run commands with slurm task-scheduler.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.aligners.STAR_Aligner.build_index">
+<span class="sig-name descname"><span class="pre">build_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.aligners.STAR_Aligner.build_index" title="Permalink to this definition"></a></dt>
+<dd><p>This function build geneome index for read alignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mem</strong> – Provide memory in GB to use. Defaults to 20.</p></li>
+<li><p><strong>tasks</strong> – Number of cpu-tasks to run. Defaults to 1.</p></li>
+<li><p><strong>gff</strong> – Gene feature file to index with genome. Defaults to None.</p></li>
+<li><p><strong>cpu</strong> – Total number of threads to use. Default 8.</p></li>
+<li><p><strong>dep</strong> – slurm job id on which this job depends.  Defaults to ‘’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.aligners.STAR_Aligner.check_index">
+<span class="sig-name descname"><span class="pre">check_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.aligners.STAR_Aligner.check_index" title="Permalink to this definition"></a></dt>
+<dd><p>Function to check if star index is valid and exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Return true if genome index is valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.aligners.STAR_Aligner.run_Alignment">
+<span class="sig-name descname"><span class="pre">run_Alignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairedEND</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.aligners.STAR_Aligner.run_Alignment" title="Permalink to this definition"></a></dt>
+<dd><p>This function align reads against indexed reference genome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> – target dictionary containing sample information.</p></li>
+<li><p><strong>pairedEND</strong> – True if samples are paired.</p></li>
+<li><p><strong>mem</strong> – Provide memory in GB to use. Default 20 GB.</p></li>
+<li><p><strong>tasks</strong> – Number of cpu-tasks to run. Defaults to 1.</p></li>
+<li><p><strong>cpu</strong> – Total number of threads to use. Default 8.</p></li>
+<li><p><strong>dep</strong> – slurm job id on which this job depends.  Defaults to ‘’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyseqrna.aligners.hisat2_Aligner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyseqrna.aligners.</span></span><span class="sig-name descname"><span class="pre">hisat2_Aligner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genome</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pySeqRNA_results'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.aligners.hisat2_Aligner" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for HISAT2 alignment program</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configFile</strong> – Path to HISAT2 config file. This file will used to get the parameters for HISAT2 alignment program.</p></li>
+<li><p><strong>slurm</strong> – To run commands with slurm task-scheduler.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.aligners.hisat2_Aligner.build_index">
+<span class="sig-name descname"><span class="pre">build_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.aligners.hisat2_Aligner.build_index" title="Permalink to this definition"></a></dt>
+<dd><p>This function build geneome index for read alignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mem</strong> – Provide memory in GB to use. Defaults to 20.</p></li>
+<li><p><strong>tasks</strong> – Number of cpu-tasks to run. Defaults to 1.</p></li>
+<li><p><strong>gff</strong> – Gene feature file to index with genome. Defaults to None.</p></li>
+<li><p><strong>cpu</strong> – Total number of threads to use. Default 8.</p></li>
+<li><p><strong>dep</strong> – slurm job id on which this job depends.  Defaults to ‘’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.aligners.hisat2_Aligner.check_index">
+<span class="sig-name descname"><span class="pre">check_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">largeIndex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.aligners.hisat2_Aligner.check_index" title="Permalink to this definition"></a></dt>
+<dd><p>Function to check if star index is valid and exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>True if genome indexed with large index.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Return true if genome index is valid.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.aligners.hisat2_Aligner.run_Alignment">
+<span class="sig-name descname"><span class="pre">run_Alignment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairedEND</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.aligners.hisat2_Aligner.run_Alignment" title="Permalink to this definition"></a></dt>
+<dd><p>This function align reads against indexed reference genome.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> – target dictionary containing sample information.</p></li>
+<li><p><strong>pairedEND</strong> – True if samples are paired.</p></li>
+<li><p><strong>mem</strong> – Provide memory in GB to use. Default 20 GB.</p></li>
+<li><p><strong>tasks</strong> – Number of cpu-tasks to run. Defaults to 1.</p></li>
+<li><p><strong>cpu</strong> – Total number of threads to use. Default 8.</p></li>
+<li><p><strong>dep</strong> – slurm job id on which this job depends.  Defaults to ‘’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyseqrna.pyseqrna_stats">
+<span id="pyseqrna-pyseqrna-stats-module"></span><h2>pyseqrna.pyseqrna_stats module<a class="headerlink" href="#module-pyseqrna.pyseqrna_stats" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This module generate read alignment statistics</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>Spetember 10, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_stats.align_stats">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_stats.</span></span><span class="sig-name descname"><span class="pre">align_stats</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampleDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trimDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bamDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">riboDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pairedEND</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_stats.align_stats" title="Permalink to this definition"></a></dt>
+<dd><p>This function calculates the alignment statistics</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sampleDict</strong> – Raw Reads sample dictionary containing all samples</p></li>
+<li><p><strong>trinDict</strong> – Dictionary containing trimmed samples</p></li>
+<li><p><strong>bamDict</strong> – Dictionary containing all samples bam files.</p></li>
+<li><p><strong>riboDict</strong> – Dictionary containing filtered reads.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A DataFrame containg alignment statistics</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="quantification-submodules">
+<h1>Quantification Submodules<a class="headerlink" href="#quantification-submodules" title="Permalink to this heading"></a></h1>
+<section id="module-pyseqrna.quantification">
+<span id="pyseqrna-quantification-module"></span><h2>pyseqrna.quantification module<a class="headerlink" href="#module-pyseqrna.quantification" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This modules contains feature counts in aligned reads for pySeqRNA</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>July 29, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.quantification.featureCount">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.quantification.</span></span><span class="sig-name descname"><span class="pre">featureCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bamDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.quantification.featureCount" title="Permalink to this definition"></a></dt>
+<dd><p>This function counts feature in the aligned BAM files using featureCounts tool.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configFile</strong> – Paramters file for featureCounts.</p></li>
+<li><p><strong>bamDict</strong> – A dictionary containing all the aligned BAM files.</p></li>
+<li><p><strong>gff</strong> – Gene feature file GFF/GTF</p></li>
+<li><p><strong>slurm</strong> – True if SLURM scheduling is available. Defaults to False</p></li>
+<li><p><strong>mem</strong> – Memory in GB. Defaults to 10</p></li>
+<li><p><strong>cpu</strong> – Total number of CPU to use per task. Defaults to 8</p></li>
+<li><p><strong>task</strong> – Number of tasks per job. Defaults to 1</p></li>
+<li><p><strong>outDir</strong> – Output directory. Defaults to present working directory.</p></li>
+<li><p><strong>dep</strong> – Slurm job id if depends on other job. Defaults to ‘’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A DataFrame containing read counts per feature per sample.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.quantification.htseqCount">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.quantification.</span></span><span class="sig-name descname"><span class="pre">htseqCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bamDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.quantification.htseqCount" title="Permalink to this definition"></a></dt>
+<dd><p>This function counts feature in the aligned BAM files using HTSeq.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>configFile</strong> – Paramters file for featureCounts.</p></li>
+<li><p><strong>bamDict</strong> – A dictionary containing all the aligned BAM files.</p></li>
+<li><p><strong>gff</strong> – Gene feature file GFF/GTF</p></li>
+<li><p><strong>slurm</strong> – True if SLURM scheduling is available. Defaults to False</p></li>
+<li><p><strong>mem</strong> – Memory in GB. Defaults to 10</p></li>
+<li><p><strong>cpu</strong> – Total number of CPU to use per task. Defaults to 8</p></li>
+<li><p><strong>task</strong> – Number of tasks per job. Defaults to 1</p></li>
+<li><p><strong>outDir</strong> – Output directory. Defaults to present working directory.</p></li>
+<li><p><strong>dep</strong> – Slurm job id if depends on other job. Defaults to ‘’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A DataFrame containing read counts per feature per sample.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyseqrna.multimapped_groups">
+<span id="pyseqrna-multimapped-groups-module"></span><h2>pyseqrna.multimapped_groups module<a class="headerlink" href="#module-pyseqrna.multimapped_groups" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This module count multimapped read groups in aligned files.</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>June 5, 2022</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.multimapped_groups.countMMG">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.multimapped_groups.</span></span><span class="sig-name descname"><span class="pre">countMMG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sampleDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bamDict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gene'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minCount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentSample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.multimapped_groups.countMMG" title="Permalink to this definition"></a></dt>
+<dd><p>This function calculates multimapped gene groups.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sampleDict</strong> – a dictionary containing samples information.</p></li>
+<li><p><strong>bamDict</strong> – a dictionary containing BAM files.</p></li>
+<li><p><strong>gff</strong> – gene feature file.</p></li>
+<li><p><strong>feature</strong> – feature type.</p></li>
+<li><p><strong>minCount</strong> – minimum number of reads per sample.</p></li>
+<li><p><strong>percentSample</strong> – minimum number of reads in percent sample.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A DataFrame containing multimapped read groups counts.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyseqrna.normalize_counts">
+<span id="pyseqrna-normalize-counts-module"></span><h2>pyseqrna.normalize_counts module<a class="headerlink" href="#module-pyseqrna.normalize_counts" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This module converts raw read counts to normalize counts</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>August 3, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyseqrna.normalize_counts.Normalization">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyseqrna.normalize_counts.</span></span><span class="sig-name descname"><span class="pre">Normalization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">countFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">featureFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typeFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GFF'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ncbi'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gene'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geneColumn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gene'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.normalize_counts.Normalization" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is for calculation of normalized counts from raw counts</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.normalize_counts.Normalization.CPM">
+<span class="sig-name descname"><span class="pre">CPM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.normalize_counts.Normalization.CPM" title="Permalink to this definition"></a></dt>
+<dd><p>This function convert counts to counts per million (CPM)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plot</strong> – True if to plot log raw counts and log CPM counts on boxplot.</p></li>
+<li><p><strong>figsize</strong> – Figure size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.normalize_counts.Normalization.RPKM">
+<span class="sig-name descname"><span class="pre">RPKM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.normalize_counts.Normalization.RPKM" title="Permalink to this definition"></a></dt>
+<dd><p>This function convert counts to reads per killobase per million (RPKM)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plot</strong> – True if to plot log raw counts and log RPKM counts on boxplot.</p></li>
+<li><p><strong>figsize</strong> – Figure size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.normalize_counts.Normalization.TPM">
+<span class="sig-name descname"><span class="pre">TPM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.normalize_counts.Normalization.TPM" title="Permalink to this definition"></a></dt>
+<dd><p>This function convert counts to reads per killobase per million</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plot</strong> – True if to plot log raw counts and log TPM counts on boxplot.</p></li>
+<li><p><strong>figsize</strong> – Figure size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.normalize_counts.Normalization.meanRatioCount">
+<span class="sig-name descname"><span class="pre">meanRatioCount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.normalize_counts.Normalization.meanRatioCount" title="Permalink to this definition"></a></dt>
+<dd><p>This function convert counts to medianRatio count</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plot</strong> – True if to plot log raw counts and log TPM counts on boxplot.</p></li>
+<li><p><strong>figsize</strong> – Figure size.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.normalize_counts.boxplot">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.normalize_counts.</span></span><span class="sig-name descname"><span class="pre">boxplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">countType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.normalize_counts.boxplot" title="Permalink to this definition"></a></dt>
+<dd><p>This function make a boxplot with boxes colored according to the countType they belong to</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> – List containg log data of raw and normalize read counts.</p></li>
+<li><p><strong>countType</strong> – Columns data of raw and normalize read counts.</p></li>
+<li><p><strong>figsize</strong> – Figure size.</p></li>
+<li><p><strong>kwargs</strong> – Other optional arguments for boxplot.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyseqrna.clustering">
+<span id="pyseqrna-clustering-module"></span><h2>pyseqrna.clustering module<a class="headerlink" href="#module-pyseqrna.clustering" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This module function generate a similarity dendrogram between samples</p>
+</dd>
+</dl>
+<p>:Created : August 2, 2021</p>
+<p>:Author : Naveen Duhan</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.clustering.clusterSample">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.clustering.</span></span><span class="sig-name descname"><span class="pre">clusterSample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">countDF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.clustering.clusterSample" title="Permalink to this definition"></a></dt>
+<dd><p>Function to cluster samples based on similarity</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>countDF</strong> – A dataframe of read counts or normalized read counts.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A clustered dendrogram of samples</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.clustering.leaf_label">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.clustering.</span></span><span class="sig-name descname"><span class="pre">leaf_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">temp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.clustering.leaf_label" title="Permalink to this definition"></a></dt>
+<dd><p>Funtion to generate leaf label for dendrogram</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>temp</strong> – Temp leaves arrangment for dendrogram</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Return leaf labels for dendrogram.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="differential-genes-submodules">
+<h1>Differential Genes Submodules<a class="headerlink" href="#differential-genes-submodules" title="Permalink to this heading"></a></h1>
+<section id="module-pyseqrna.differential_expression">
+<span id="pyseqrna-differential-expression-module"></span><h2>pyseqrna.differential_expression module<a class="headerlink" href="#module-pyseqrna.differential_expression" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This module finds differentially expressed genes from raw read counts</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>October 22, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyseqrna.differential_expression.Gene_Description">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyseqrna.differential_expression.</span></span><span class="sig-name descname"><span class="pre">Gene_Description</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combinations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.differential_expression.Gene_Description" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class fetch gene name and description for genes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.differential_expression.Gene_Description.add_names">
+<span class="sig-name descname"><span class="pre">add_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.differential_expression.Gene_Description.add_names" title="Permalink to this definition"></a></dt>
+<dd><p>This function add gene name and description in DEGs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>DEGs file with gene name and description.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.differential_expression.Gene_Description.add_names_annotation">
+<span class="sig-name descname"><span class="pre">add_names_annotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.differential_expression.Gene_Description.add_names_annotation" title="Permalink to this definition"></a></dt>
+<dd><p>This function add gene name and description in functional annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Functional annotation file with gene name and description.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.differential_expression.degFilter">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.differential_expression.</span></span><span class="sig-name descname"><span class="pre">degFilter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degDF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CompareList</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FDR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FOLD</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(10,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extraColumns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.differential_expression.degFilter" title="Permalink to this definition"></a></dt>
+<dd><p>This function filter all gene expression file based on given FOLD and FDR</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degDF</strong> – A datafram containing all gene differantial expression in all combinations.</p></li>
+<li><p><strong>CompareList</strong> – A list of all the sample comparison.</p></li>
+<li><p><strong>FDR</strong> – False Discovery Rate for filtering DEGs. Defaults to 0.05.</p></li>
+<li><p><strong>FOLD</strong> – Fold change value. The log2 of the value will be calculated. Defaults to 2.</p></li>
+<li><p><strong>plot</strong> – True if want to plot DEGs per sample on barplot. Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.differential_expression.runDESeq2">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.differential_expression.</span></span><span class="sig-name descname"><span class="pre">runDESeq2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">countDF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">design</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gene'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mmg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lib</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.differential_expression.runDESeq2" title="Permalink to this definition"></a></dt>
+<dd><p>This function is a wrapper to DESeq2 package in R for differeantial expression analysis from raw read counts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>countFile</strong> – Raw read count file.</p></li>
+<li><p><strong>targetFile</strong> – Tab-delimited target file with replication and sample name</p></li>
+<li><p><strong>design</strong> – [description]. Defaults to None.</p></li>
+<li><p><strong>combination</strong> – Comparison list contaning samples to compare.</p></li>
+<li><p><strong>gene_column</strong> – First column in raw read count file. Defaults to ‘Gene’.</p></li>
+<li><p><strong>mmg</strong> – True if raw read counts are from multimapped gene groups.</p></li>
+<li><p><strong>subset</strong> – If runDESeq2 subset raw read count according to comparison.</p></li>
+<li><p><strong>lib</strong> – library path of DESeq2 to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A datafram containing all gene differantial expression in all combinations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.differential_expression.run_edgeR">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.differential_expression.</span></span><span class="sig-name descname"><span class="pre">run_edgeR</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">countDF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combination</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_column</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Gene'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mmg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replicate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bcv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lib</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.differential_expression.run_edgeR" title="Permalink to this definition"></a></dt>
+<dd><p>This function is a wrapper to edgeR package in R for differeantial expression analysis from raw read counts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>countFile</strong> – Raw read count file.</p></li>
+<li><p><strong>targetFile</strong> – Tab-delimited target file with replication and sample name</p></li>
+<li><p><strong>design</strong> – [description]. Defaults to None.</p></li>
+<li><p><strong>combination</strong> – Comparison list contaning samples to compare.</p></li>
+<li><p><strong>gene_column</strong> – First column in raw read count file. Defaults to ‘Gene’.</p></li>
+<li><p><strong>mmg</strong> – True if raw read counts are from multimapped gene groups.</p></li>
+<li><p><strong>subset</strong> – If runDESeq2 subset raw read count according to comparison.</p></li>
+<li><p><strong>replicate</strong> – False if there are no replicates.</p></li>
+<li><p><strong>bcv</strong> – Biological coefficient of variation if there are no replicate.</p></li>
+<li><p><strong>lib</strong> – library path of DESeq2 to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A datafram containing all gene differantial expression in all combinations.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="functional-annotation-submodules">
+<h1>Functional Annotation Submodules<a class="headerlink" href="#functional-annotation-submodules" title="Permalink to this heading"></a></h1>
+<section id="module-pyseqrna.gene_ontology">
+<span id="pyseqrna-gene-ontology-module"></span><h2>pyseqrna.gene_ontology module<a class="headerlink" href="#module-pyseqrna.gene_ontology" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>gene_ontology module is for performing gene ontology enrichment analysis of differentially expressed genes</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>January 5, 2022</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyseqrna.gene_ontology.GeneOntology">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyseqrna.gene_ontology.</span></span><span class="sig-name descname"><span class="pre">GeneOntology</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ensembl'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">taxid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.gene_ontology.GeneOntology" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is for Gene Ontology enrichment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>species</strong> – Species name. Ex. for Arabidopsis thaliana it is athaliana</p></li>
+<li><p><strong>type</strong> – Species is from plants or animals.</p></li>
+<li><p><strong>keyType</strong> – Genes are from NCBI or ENSEMBL. Default is ENSEMBL.</p></li>
+<li><p><strong>taxid</strong> – Taxonomy ID if keyType is NCBI.</p></li>
+<li><p><strong>gff</strong> – Gene feature file.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.gene_ontology.GeneOntology.barplotGO">
+<span class="sig-name descname"><span class="pre">barplotGO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logPvalues'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.gene_ontology.GeneOntology.barplotGO" title="Permalink to this definition"></a></dt>
+<dd><p>This function creates a barplot for Gene Ontology enrichment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – Gene Ontology enrichment file from enrichGO function.</p></li>
+<li><p><strong>nrows</strong> – Number of rows to plot. Default to 20 rows.</p></li>
+<li><p><strong>colorBy</strong> – Color bar on plots with logPvalues / FDR. Defaults to ‘logPvalues’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a barplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.gene_ontology.GeneOntology.dotplotGO">
+<span class="sig-name descname"><span class="pre">dotplotGO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logPvalues'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.gene_ontology.GeneOntology.dotplotGO" title="Permalink to this definition"></a></dt>
+<dd><p>This function creates a dotplot for Gene Ontology enrichment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – Gene Ontology enrichment file from enrichGO function.</p></li>
+<li><p><strong>nrows</strong> – Number of rows to plot. Default to 20 rows.</p></li>
+<li><p><strong>colorBy</strong> – Color dot on plots with logPvalues / FDR. Defaults to ‘logPvalues’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dotplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.gene_ontology.GeneOntology.enrichGO">
+<span class="sig-name descname"><span class="pre">enrichGO</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pvalueCutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dotplot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logPvalues'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.gene_ontology.GeneOntology.enrichGO" title="Permalink to this definition"></a></dt>
+<dd><p>This function performs Gene Ontology enrichment of DEGs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> – Differentially expressed genes in a sample.</p></li>
+<li><p><strong>pvalueCutoff</strong> – P-value cutoff for enrichment. Default is 0.05.</p></li>
+<li><p><strong>plot</strong> – True if a plot is needed. Default is True.</p></li>
+<li><p><strong>plotType</strong> – Gene Ontology enrichment visualization on dotplot/barplot. Default is dotplot.</p></li>
+<li><p><strong>nrows</strong> – Number of rows to plot. Default to 20 rows.</p></li>
+<li><p><strong>colorBy</strong> – Color dot on plots with logPvalues / FDR. Defaults to ‘logPvalues’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dictionary</p>
+</dd>
+<dt class="field-odd">Rtype results</dt>
+<dd class="field-odd"><p>Gene Ontology enrichment results.</p>
+</dd>
+<dt class="field-even">Rtype plot</dt>
+<dd class="field-even"><p>a dotplot/barplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pyseqrna.pathway">
+<span id="pyseqrna-pathway-module"></span><h2>pyseqrna.pathway module<a class="headerlink" href="#module-pyseqrna.pathway" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This module is for performing KEGG pathway enrichment analysis of differentially expressed genes</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>January 10, 2022</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyseqrna.pathway.Pathway">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyseqrna.pathway.</span></span><span class="sig-name descname"><span class="pre">Pathway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">species</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pathway.Pathway" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is for KEGG Pathway enrichment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>species</strong> – Species name. Ex. for Arabidopsis thaliana it is athaliana</p></li>
+<li><p><strong>keyType</strong> – Genes are from NCBI or ENSEMBL. Default is ENSEMBL.</p></li>
+<li><p><strong>gff</strong> – Gene feature file.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.pathway.Pathway.barplotKEGG">
+<span class="sig-name descname"><span class="pre">barplotKEGG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logPvalues'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pathway.Pathway.barplotKEGG" title="Permalink to this definition"></a></dt>
+<dd><p>This function creates a barplot for KEGG pathway enrichment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – KEGG pathway enrichment file from enrichKEGG function.</p></li>
+<li><p><strong>nrows</strong> – Number of rows to plot. Default to 20 rows.</p></li>
+<li><p><strong>colorBy</strong> – Color bar on plots with logPvalues / FDR. Defaults to ‘logPvalues’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a barplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.pathway.Pathway.dotplotKEGG">
+<span class="sig-name descname"><span class="pre">dotplotKEGG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logPvalues'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pathway.Pathway.dotplotKEGG" title="Permalink to this definition"></a></dt>
+<dd><p>This function creates a dotplot for KEGG pathway enrichment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – KEGG pathway enrichment file from enrichKEGG function.</p></li>
+<li><p><strong>nrows</strong> – Number of rows to plot. Default to 20 rows.</p></li>
+<li><p><strong>colorBy</strong> – Color dot on plots with logPvalues / FDR. Defaults to ‘logPvalues’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dotplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyseqrna.pathway.Pathway.enrichKEGG">
+<span class="sig-name descname"><span class="pre">enrichKEGG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pvalueCutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'dotplot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorBy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'logPvalues'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pathway.Pathway.enrichKEGG" title="Permalink to this definition"></a></dt>
+<dd><p>This function performs KEGG pathway enrichment of DEGs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> – Differentially expressed genes in a sample.</p></li>
+<li><p><strong>pvalueCutoff</strong> – P-value cutoff for enrichment. Default is 0.05.</p></li>
+<li><p><strong>plot</strong> – True if a plot is needed. Default is True.</p></li>
+<li><p><strong>plotType</strong> – KEGG pathway enrichment visualization on dotplot/barplot. Default is dotplot.</p></li>
+<li><p><strong>nrows</strong> – Number of rows to plot. Default to 20 rows.</p></li>
+<li><p><strong>colorBy</strong> – Color dot on plots with logPvalues / FDR. Defaults to ‘logPvalues’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a dictionary</p>
+</dd>
+<dt class="field-odd">Rtype results</dt>
+<dd class="field-odd"><p>KEGG pathway enrichment results.</p>
+</dd>
+<dt class="field-even">Rtype plot</dt>
+<dd class="field-even"><p>a dotplot/barplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="utility-submodules">
+<h1>Utility Submodules<a class="headerlink" href="#utility-submodules" title="Permalink to this heading"></a></h1>
+<section id="module-pyseqrna.arg_parser">
+<span id="pyseqrna-arg-parser-module"></span><h2>pyseqrna.arg_parser module<a class="headerlink" href="#module-pyseqrna.arg_parser" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>Argument parser module for pySeqRNA</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>October 11, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>Naveen Duhan</p>
+</dd>
+</dl>
+</section>
+<section id="module-pyseqrna.pyseqrna_utils">
+<span id="pyseqrna-pyseqrna-utils-module"></span><h2>pyseqrna.pyseqrna_utils module<a class="headerlink" href="#module-pyseqrna.pyseqrna_utils" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This modules contains utility functions for pySeqRNA</p>
+</dd>
+</dl>
+<p>:Created : July 11, 2021</p>
+<p>:Author : Naveen Duhan</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.PyseqrnaLogger">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">PyseqrnaLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.PyseqrnaLogger" title="Permalink to this definition"></a></dt>
+<dd><p>This function intialize logger in the pySeqRNA modules</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> – Logger name for the module</p></li>
+<li><p><strong>log</strong> – File name for logging</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.change_attribute">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">change_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.change_attribute" title="Permalink to this definition"></a></dt>
+<dd><p>This function changes the attribute for feature counts based on GFF or GTF file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.change_ids">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">change_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.change_ids" title="Permalink to this definition"></a></dt>
+<dd><p>This function changes ids to other ids.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> – A DataFrame containing IDs and synonym IDs.</p></li>
+<li><p><strong>file</strong> – A DataFrame in which IDs needs to be replaced.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.check_files">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">check_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.check_files" title="Permalink to this definition"></a></dt>
+<dd><p>This function check if files exist</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – List of files to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True or False.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Retrun true only if all files in list exists in a directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.check_path">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">check_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.check_path" title="Permalink to this definition"></a></dt>
+<dd><p>This function check if directory exist</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>args</strong> – List of directory to check.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True or False</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Retrun true only if all files in list exists in a directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.check_status">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">check_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.check_status" title="Permalink to this definition"></a></dt>
+<dd><p>This function is check status of slurm job</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>job_id</strong> – slurm job id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True/False</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>If job completed return True. Default False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.clusterRun">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">clusterRun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pyseqRNA'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'</span> <span class="pre">pyseqrna'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serror</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pyseqrna'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'command'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mem</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cpu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.clusterRun" title="Permalink to this definition"></a></dt>
+<dd><p>This function is for submitting job on cluster with SLURM job Scheduling</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_name</strong> – Slurm job name on HPC. Defaults to ‘pyseqRNA’.</p></li>
+<li><p><strong>command</strong> – Command to excute on HPC.</p></li>
+<li><p><strong>time</strong> – Slurm Job time allotment.</p></li>
+<li><p><strong>mem</strong> – Memory to use in GB.</p></li>
+<li><p><strong>cpu</strong> – Number of CPUs to use for the job.</p></li>
+<li><p><strong>tasks</strong> – Number of tasks to execute.</p></li>
+<li><p><strong>dep</strong> – Slurm Job dependency. Defaults to ‘’.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><dl class="field-list simple">
+<dt class="field-odd">rtype</dt>
+<dd class="field-odd"><p>Slurm sbatch ID</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.findFiles">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">findFiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">searchPATH</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">searchPattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.findFiles" title="Permalink to this definition"></a></dt>
+<dd><p>This function find searches files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>searchPATH</strong> – Search directory.</p></li>
+<li><p><strong>pattern</strong> – Pattern to search.</p></li>
+<li><p><strong>recursive</strong> – True if want to search recursively. Defaults to False.</p></li>
+<li><p><strong>verbose</strong> – True if want to print output. Defaults to False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.getFiles">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">getFiles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.getFiles" title="Permalink to this definition"></a></dt>
+<dd><p>This function searches all files containing patterns in a directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – Patteren to search.</p></li>
+<li><p><strong>path</strong> – A direcory path.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>All files containing a pattern.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.getGenes">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">getGenes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combinations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">multisheet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geneType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outDir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.getGenes" title="Permalink to this definition"></a></dt>
+<dd><p>This function extract genes from filtered differentiall expressed genes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> – Filtered DEGs file.</p></li>
+<li><p><strong>combinations</strong> – Comparison list contaning samples.</p></li>
+<li><p><strong>multisheet</strong> – True if file is multisheet.</p></li>
+<li><p><strong>outDir</strong> – Output directory. Default is current working directory.</p></li>
+</ul>
+</dd>
+<dt class="field-even">GeneType</dt>
+<dd class="field-even"><p>Genes to extract all, up , down. Default is all.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.get_basename">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">get_basename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filePATH</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.get_basename" title="Permalink to this definition"></a></dt>
+<dd><p>This function get the base name of the file from full path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filePATH</strong> – Path to file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.get_cpu">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">get_cpu</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.get_cpu" title="Permalink to this definition"></a></dt>
+<dd><p>This function get actual CPU count of the system</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Integer</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int with 80 % of CPU count</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.get_directory">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">get_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filePATH</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.get_directory" title="Permalink to this definition"></a></dt>
+<dd><p>This function retrun directory of a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filePATH</strong> – Path to file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.get_file_extension">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">get_file_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filePATH</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.get_file_extension" title="Permalink to this definition"></a></dt>
+<dd><p>This function return the extension of file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filePATH</strong> – Path to file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.get_parent">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">get_parent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filePATH</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.get_parent" title="Permalink to this definition"></a></dt>
+<dd><p>This function return the file name without extension</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filePATH</strong> – Path to file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.make_directory">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">make_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.make_directory" title="Permalink to this definition"></a></dt>
+<dd><p>This function create a directory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dir</strong> – Directory name.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Name of created directory.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.parse_config_file">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">parse_config_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.parse_config_file" title="Permalink to this definition"></a></dt>
+<dd><p>This function parse the config file for all the programs used in pySeqRNA</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>configFile: &lt;program&gt;.ini config file containing arguments.</p>
+</dd>
+<dt class="field-even">Retrun</dt>
+<dd class="field-even"><p>Program specific arguments</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.parse_gff">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">parse_gff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.parse_gff" title="Permalink to this definition"></a></dt>
+<dd><p>This function parse a gene feature file in a dataframe for gene IDs</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> – A gene feature file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.read_input_file">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">read_input_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inpath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paired</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.read_input_file" title="Permalink to this definition"></a></dt>
+<dd><p>This function reads input sample file and convert into a dictionary. It also make all possible combination for DEG analysis. Target dataframe for differential analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputFile</strong> – input sample file containing the infromation about project</p></li>
+<li><p><strong>inputPath</strong> – Path for input fastq files</p></li>
+<li><p><strong>pairedEND</strong> – Check if reads are paired end]. Defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>samples, combinations and targets for differential expression</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A dictionary</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_utils.replace_cpu">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_utils.</span></span><span class="sig-name descname"><span class="pre">replace_cpu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_utils.replace_cpu" title="Permalink to this definition"></a></dt>
+<dd><p>This function replace the actual CPU in config file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Change CPU count to 80% of available CPU</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pyseqrna.version">
+<span id="pyseqrna-version-module"></span><h2>pyseqrna.version module<a class="headerlink" href="#module-pyseqrna.version" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This is version of pySeqRNA</p>
+</dd>
+<dt class="field-even">Created</dt>
+<dd class="field-even"><p>September 15, 2021</p>
+</dd>
+<dt class="field-odd">Author</dt>
+<dd class="field-odd"><p>naveen duhan</p>
+</dd>
+</dl>
+</section>
+<section id="module-pyseqrna.pyseqrna_plots">
+<span id="pyseqrna-pyseqrna-plots-module"></span><h2>pyseqrna.pyseqrna_plots module<a class="headerlink" href="#module-pyseqrna.pyseqrna_plots" title="Permalink to this heading"></a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Title</dt>
+<dd class="field-odd"><p>This module function generate visualization</p>
+</dd>
+</dl>
+<p>:Created : November 2, 2021</p>
+<p>:Author : Naveen Duhan</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_plots.plotHeatmap">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_plots.</span></span><span class="sig-name descname"><span class="pre">plotHeatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degDF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combinations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figdim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'counts'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_plots.plotHeatmap" title="Permalink to this definition"></a></dt>
+<dd><p>This function plots a heatmap based on FOLD change or counts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degDF</strong> – All gene expression file or Counts file.</p></li>
+<li><p><strong>combinations</strong> – All sample combinations.</p></li>
+<li><p><strong>num</strong> – Total number of genes to plot. Default is 50 (25 up and 25 down)</p></li>
+<li><p><strong>figdim</strong> – Figure dimensions.</p></li>
+<li><p><strong>type</strong> – Heatmap to create on counts/degs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_plots.plotMA">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_plots.</span></span><span class="sig-name descname"><span class="pre">plotMA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degDF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">countDF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FOLD</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FDR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('red',</span> <span class="pre">'grey',</span> <span class="pre">'green')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dotsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markerType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_plots.plotMA" title="Permalink to this definition"></a></dt>
+<dd><p>This function plots a MA plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degDF</strong> – All gene expression file.</p></li>
+<li><p><strong>comp</strong> – Sample comparison.</p></li>
+<li><p><strong>FOLD</strong> – FOLD change. Defaults to 2.</p></li>
+<li><p><strong>FDR</strong> – FDR value. Defaults to 0.05.</p></li>
+<li><p><strong>color</strong> – Colors to be used in plot. Defaults to (‘red’,’grey’,’green’).</p></li>
+<li><p><strong>dim</strong> – Dimensions of the plot. Defaults to (8,5).</p></li>
+<li><p><strong>dotsize</strong> – Dotsize on plot. Defaults to 8.</p></li>
+<li><p><strong>markeType</strong> – Shape to use. Defaults to ‘o’.</p></li>
+<li><p><strong>alpha</strong> – Transparency of plot. Defaults to 0.5.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_plots.plotVenn">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_plots.</span></span><span class="sig-name descname"><span class="pre">plotVenn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">DEGFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FOLD</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comparisons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degLabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">12)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_plots.plotVenn" title="Permalink to this definition"></a></dt>
+<dd><p>This function plots a Venn diagram for filtered degs in samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>DEGFile</strong> – Filtered deg excel file containg samples sheet-wise.</p></li>
+<li><p><strong>FOLD</strong> – FOLD change. Defaults to 2.</p></li>
+<li><p><strong>comparisons</strong> – Comparison list. Defaults to None.</p></li>
+<li><p><strong>degLabel</strong> – How to put labes either total/ up-down. Defaults to “” i.e. up-down.</p></li>
+<li><p><strong>fontsize</strong> – Font size. Defaults to 14.</p></li>
+<li><p><strong>figsize</strong> – Figure size. Defaults to (12,12).</p></li>
+<li><p><strong>dpi</strong> – Figure DPI resolution. Defaults to 300.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyseqrna.pyseqrna_plots.plotVolcano">
+<span class="sig-prename descclassname"><span class="pre">pyseqrna.pyseqrna_plots.</span></span><span class="sig-name descname"><span class="pre">plotVolcano</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">degDF</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FOLD</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pValue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('red',</span> <span class="pre">'grey',</span> <span class="pre">'green')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(8,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dotsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markerType</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'o'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyseqrna.pyseqrna_plots.plotVolcano" title="Permalink to this definition"></a></dt>
+<dd><p>This function plots a Volcano plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>degDF</strong> – All gene expression file.</p></li>
+<li><p><strong>comp</strong> – Sample comparison.</p></li>
+<li><p><strong>FOLD</strong> – FOLD change. Defaults to 2.</p></li>
+<li><p><strong>pValue</strong> – Pvalues. Defaults to 0.05.</p></li>
+<li><p><strong>color</strong> – Colors to be used in plot. Defaults to (‘red’,’grey’,’green’).</p></li>
+<li><p><strong>dim</strong> – Dimensions of the plot. Defaults to (8,5).</p></li>
+<li><p><strong>dotsize</strong> – Dotsize on plot. Defaults to 8.</p></li>
+<li><p><strong>markeType</strong> – Shape to use. Defaults to ‘o’.</p></li>
+<li><p><strong>alpha</strong> – Transparency of plot. Defaults to 0.5.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Naveen Duhan.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider } from "antd";
+// import { Divider } from "antd";
 import "bootstrap";
 import './Home.scss';
 import workflow from '../../assets/workflow.png';

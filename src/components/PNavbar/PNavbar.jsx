@@ -53,6 +53,9 @@ return(
             <Nav.Link href= {`${env.BASE_URL}/tutorial`} className={'tutorial' === this.props.active ? active : className}>
               Tutorial
             </Nav.Link>
+            <Nav.Link href={`${env.BASE_URL}/documentation`} className={'documentation' === this.props.active ? active : className}>
+              Documentation
+            </Nav.Link>
             <Nav.Link href={`${env.BASE_URL}/download`} className={'download' === this.props.active ? active : className}>
               Download
             </Nav.Link>

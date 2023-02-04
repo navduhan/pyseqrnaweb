@@ -7,6 +7,7 @@ import { Download } from './pages/Download/Download.jsx';
 import {Tutorial}  from './pages/Tutorial/Tutorial.jsx';
 import {Contact} from './pages/Contact/Contact.jsx';
 
+import { Documentation } from './pages/Documentation/Documentation.jsx';
 import {
     BrowserRouter as Router,
     Routes,
@@ -30,10 +31,11 @@ export class PyseqRNA extends Component {
                     
                     </Route>
                     <Route path={`${env.BASE_URL}/home`} element={<Home />}>
-                    
-                
                     </Route>
                     <Route path={`${env.BASE_URL}/download`} element={<Download />}>
+                    </Route>
+                    <Route path={`${env.BASE_URL}/documentation`} element={ <Documentation />} >
+                   
                     </Route>
                     <Route path={`${env.BASE_URL}/tutorial`} element={<Tutorial />}>
                     </Route>

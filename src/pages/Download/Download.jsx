@@ -10,11 +10,11 @@ export class Download extends React.Component {
 
     <div className="col-md-8">
         <p className="info mt-5">
-        Download the installer: <a href="https://docs.conda.io/en/latest/miniconda.html" target={'_blank'}>Miniconda installer</a>.
+        Download the installer: <a href="https://docs.conda.io/en/latest/miniconda.html" target={'_blank'} rel="noreferrer" >Miniconda installer</a>.
         <div className="br"></div>
         <h6 className="my-3 terminal">Open a Terminal</h6>
         <div className="br"></div>
-        Download pyseqrna:<code> git clone <a href="https://github.com/navduhan/pyseqrna.git" target={'_blank'}>https://github.com/navduhan/pyseqrna.git</a></code>
+        Download pyseqrna:<code> git clone <a href="https://github.com/navduhan/pyseqrna.git" target={'_blank'} rel="noreferrer" >https://github.com/navduhan/pyseqrna.git</a></code>
         <br></br>
         <code>cd pyseqrna</code>
         <br></br>
